@@ -1,0 +1,44 @@
+<!--pages/mine-info/mine-info.wxml-->
+<view class="main-view">
+  <view class="info-view">
+    <view class="info-index">
+      <text class="info-title">姓名</text>
+      <text class="info-con" wx:if="{{inputIs}}">冯先生</text>
+      <input class="input-name" placeholder="请输入" wx:else></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">年龄</text>
+      <text class="info-con" wx:if="{{inputIs}}">20</text>
+      <input class="input-age" placeholder="请输入" wx:else></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">性别</text>
+      <text class="info-con" wx:if="{{inputIs}}">男</text>
+      <input class="input-sex" placeholder="请输入" wx:else></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">工号</text>
+      <text class="info-con" wx:if="{{inputIs}}">A13583</text>
+      <input class="input-jobNum" placeholder="请输入" wx:else></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">职务</text>
+      <text class="info-con" wx:if="{{inputIs}}">经理</text>
+      <input class="input-job" placeholder="请输入" wx:else></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">电话</text>
+      <text class="info-con" wx:if="{{inputIs}}">1888888888</text>
+      <input class="input-phone" placeholder="请输入"  wx:else></input>
+    </view>
+    <view class="info-index" wx:if="{{inputIs}}">
+      <text class="info-title">权限</text>
+      <text class="info-con" >普通</text>
+    </view>
+  </view>
+
+  <view class="bottom-box">
+    <view class="bt-modify" bindtap="modify">{{inputIs?"修改":"提交"}}</view>
+    <view class="bt-modify deposit" bindtap="deposit">{{inputIs?"返回":"取消"}}</view>
+  </view>
+</view>

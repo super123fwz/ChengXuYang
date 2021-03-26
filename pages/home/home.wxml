@@ -1,0 +1,15 @@
+<!--pages/home/home.wxml-->
+<view class="main-view">
+  <view class="search-view">
+    <input class="search-input" bindinput="searchInput" value="{{search_info}}" placeholder="请输入药品编号或名称"></input>
+    <image class="search-icon" src="/reources/icon/search.png"></image>
+    <image class="search-icon" style="width:50rpx;height:50rpx" src="/reources/icon/dele.png" bindtap="delebind">
+    </image>
+  </view>
+  <view class="list-con">
+    <view class="list-view" wx:for="{{durgs}}" id="{{index}}" bindtap="drugsInfo">
+      <text class="drugs">{{item.name}}</text>
+    </view>
+    <image class="add_drugs" src="/reources/icon/add_drugs.png" bindtap="drugsAdd"></image>
+  </view>
+</view>

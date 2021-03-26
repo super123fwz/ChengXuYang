@@ -1,0 +1,17 @@
+/* pages/permission/permission.wxss */
+.main-view {
+  width: 100vw;
+  min-height: 100vh;
+}
+.info-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-index {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20rpx 30rpx;
+  font-size: 40rpx;
+}

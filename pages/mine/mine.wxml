@@ -1,0 +1,22 @@
+<!--pages/mine/mine.wxml-->
+<view class="main-view">
+  <view class="mine-infor-view">
+    <image class="mine-head" src="{{userInfo.avatarUrl}}"></image>
+    <text class="mine-name">{{userInfo.nickName}}</text>
+  </view>
+  <view class="mine-item-view">
+    <view class="mine-item" bindtap="mineInfo">个人信息
+      <image class="mine-icon" src="/reources/icon/sanjiao.png"></image>
+    </view>
+    <!-- <view class="mine-item">权限信息
+      <image class="mine-icon" src="/reources/icon/sanjiao.png"></image>
+    </view> -->
+    <!-- <view class="mine-item" bindtap="permission">权限申请
+      <image class="mine-icon" src="/reources/icon/sanjiao.png"></image>
+    </view> -->
+    <view class="mine-item" bindtap="managingPeople">人员管理
+      <image class="mine-icon" src="/reources/icon/sanjiao.png"></image>
+    </view>
+    <view class="push" bindtap="push">退出登录</view>
+  </view>
+</view>

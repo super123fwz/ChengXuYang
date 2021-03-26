@@ -1,0 +1,44 @@
+<!--pages/drugs-info/drugs-info.wxml-->
+<view class="main-view">
+
+  <view class="info-view">
+
+    <view class="info-index">
+      <text class="info-title">【药品名称】</text>
+      <text class="info-con">{{drugs_info.name}}</text>
+    </view>
+    <view class="info-index">
+      <text class="info-title">【药品编号】</text>
+      <text class="info-con">{{drugs_info.code}}</text>
+    </view>
+    <view class="info-index">
+      <text class="info-title">【生产厂家】</text>
+      <text class="info-con">{{drugs_info.producer}}</text>
+    </view>
+    <view class="info-index">
+      <text class="info-title">【进货价格】</text>
+      <text class="info-con">{{drugs_info.buy_price}}</text>
+    </view>
+    <view class="info-index">
+      <text class="info-title">【出售价格】</text>
+      <text class="info-con">{{drugdrugs_infos.sell_price}}</text>
+    </view>
+    <view class="info-index">
+      <text class="info-title">【剩余量】</text>
+      <text class="info-con">{{drugs_info.retail_price}}</text>
+    </view>
+    <view class="info-index input-view">
+      <text class="info-title">【支出/添加】</text>
+      <view class="stepper-view">
+        <view class="stepper stepper-add" bindtap="stepperAdd">+</view>
+        <input class="stepper stepper-input" value="{{number}}" bindblur="bindblur"></input>
+        <view class="stepper stepper-reduce" bindtap="stepperReduce">-</view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-box">
+    <view class="bt-modify" style="margin-left:0" bindtap="modify">修改</view>
+    <view class="bt-modify" bindtap="expend">支出</view>
+    <view class="bt-modify deposit" bindtap="deposit">添加</view>
+  </view>
+</view>

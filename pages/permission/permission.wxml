@@ -1,0 +1,20 @@
+<!--pages/permission/permission.wxml-->
+<view class="main-view">
+  <view class="info-view">
+      <view class="info-index">
+        <text class="info-title">冯先生</text>
+        <text class="info-con" >管理员</text>
+        <text class="info-con" >同意</text>
+      </view>
+      <view class="info-index">
+        <text class="info-title">冯先生</text>
+        <text class="info-con" >管理员</text>
+        <text class="info-con" >同意</text>
+      </view>
+      <view class="info-index">
+        <text class="info-title">冯先生</text>
+        <text class="info-con" >管理员</text>
+        <text class="info-con" >同意</text>
+      </view>
+  </view>
+</view>

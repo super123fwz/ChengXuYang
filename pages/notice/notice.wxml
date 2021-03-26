@@ -1,0 +1,9 @@
+<!--pages/notice/notice.wxml-->
+<view class="main-view">
+  <view class="notice-list">
+    <block wx:for="{{message}}">
+      <view class="notice-con">{{item.data}}</view>
+    </block>
+  </view>
+  <image class="add_drugs" src="/reources/icon/add_drugs.png" bindtap="publish"></image>
+</view>

@@ -1,0 +1,51 @@
+/* pages/drugs-add/drugs-add.wxss */
+.main-view {
+  width: 100vw;
+  min-height: 100vh;
+
+}
+
+.info-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.info-index {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.info-title {
+  font-weight: bold;
+}
+
+.info-con {
+  margin: 30rpx 0 0 15rpx;
+}
+
+.drugs-input {
+  margin-left: 18rpx;
+}
+
+.bt-add {
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+  right: 30rpx;
+  border: 2rpx solid #cccc;
+  border-radius: 50rpx;
+  height: 80rpx;
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: aliceblue;
+  background-color: rgb(13, 196, 7);
+}

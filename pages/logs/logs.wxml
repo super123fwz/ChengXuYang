@@ -1,0 +1,5 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <input class="input-phone" placeholder="请输入登录手机号" maxlength="11" bindinput="bindinput"></input>
+  <button class="" bindtap="bindinfo" open-type="getUserInfo">登陆/注册</button>
+</view>
