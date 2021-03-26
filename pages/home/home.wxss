@@ -48,7 +48,7 @@
 }
 
 .add_drugs {
-  position: absolute;
+  position: fixed;
   bottom: 30rpx;
   right: 30rpx;
   width: 100rpx;

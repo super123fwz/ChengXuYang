@@ -1,2 +1,12 @@
 <!--pages/notice-publish/notice-publish.wxml-->
-<text>pages/notice-publish/notice-publish.wxml</text>
+<view class="main-view">
+  <view class="contant">
+    <textarea class="textarea" name="bindTextAreaBlur" bindblur="getText" bindinput="getValueLength"
+      show-confirm-bar='true' value="{{editText}}" bindconfirm="getText" maxlength="{{max}}" minlength="{{min}}"
+      auto-focus placeholder="请输入发布内容">
+    </textarea>
+    <view class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</view>
+
+  </view>
+  <view class="submitBt" bindtap="submitBt">提交</view>
+</view>

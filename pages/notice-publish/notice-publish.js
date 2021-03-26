@@ -5,7 +5,35 @@ Page({
    * 页面的初始数据
    */
   data: {
+    max: 200, //限制最大输入字符数
+    min: 0,  //限制最小输入字符数
+    content:""
+  },
+  getValueLength: function (e) {
+    // console.log(e)
+    let value = e.detail.value
+    let len = parseInt(value.length)
+    // 最少字数限制
+    if (len <= this.data.min)
+      this.setData({
+        minWord: ""
+      })
+    else if (len > this.data.min)
+      this.setData({
+        minWord: " "
+      })
+     
+    //最多字数限制
+    if (len > 200) return;
+    this.setData({
+      currentWordNumber: len //当前字数 
+    })
+    this.setData({content:e.detail.value})
 
+  },
+  
+  submitBt :function(e){
+  
   },
 
   /**
