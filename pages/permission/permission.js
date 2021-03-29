@@ -1,13 +1,58 @@
 // pages/permission/permission.js
+const api = require('../../utils/requestutil.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    user: {
+      mobile: null,
+      password: null,
+      affirmpassword: null,
+    }
   },
+  bindinput: function (e) {
+    var value = e.detail.value
+    var user = this.data.user
+    switch (e.target.dataset.type) {
+      case "user":
+        user.mobile = value
+        break;
+      case "affirmpassword":
+        user.affirmpassword = value
+        break;
+      case "password":
+        user.password = value
+        break;
+      default:
+        break;
+    }
+    this.setData({
+      user: user
+    })
+  },
+  bindsign: function () {
+    var data = this.data.user
+    if (data.password != data.affirmpassword) {
+      wx.showToast({
+        title: '两次密码不一致',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    data = {
+      mobile: data.mobile,
+      password: data.password,
+    }
+    console.log("data", data)
+    api.userActionregister(data).then(res => {
+      console.log(res)
+    }).catch(err => {
 
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

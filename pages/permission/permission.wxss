@@ -1,8 +1,8 @@
-/* pages/permission/permission.wxss */
 .main-view {
   width: 100vw;
   min-height: 100vh;
 }
+
 .info-view {
   display: flex;
   flex-direction: column;
@@ -10,8 +10,20 @@
 
 .info-index {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 20rpx 30rpx;
   font-size: 40rpx;
+}
+
+.info-index input {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.sign {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

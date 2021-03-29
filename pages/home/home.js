@@ -1,5 +1,6 @@
 // pages/home/home.js
 var app = getApp()
+const api = require('../../utils/requestutil.js')
 Page({
 
   /**
@@ -54,17 +55,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this
-    wx.getStorage({
-      key: 'userInfo',
-      success (res) {
-        if(res.data){
-          that.setData({
-            durgs: that.data.durgs_list
-          })
-        }
-      }
+    var that = this
+
+    api.drugActionList().then(res => {
+      var data = res.data
+      console.log("data", data);
+      this.setData({
+        durgs: data.data
+      })
+    }).catch(err => {
+
     })
+    // wx.getStorage({
+    //   key: 'userInfo',
+    //   success (res) {
+    //     if(res.data){
+    //       that.setData({
+    //         durgs: that.data.durgs_list
+    //       })
+    //     }
+    //   }
+    // })
     // if (app.globalData.userInfo == null) {
     //   wx.navigateTo({
     //     url: '/pages/logs/logs',
