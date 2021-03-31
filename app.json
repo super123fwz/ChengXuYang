@@ -12,8 +12,7 @@
     "pages/pre-management/permanagement",
     "pages/notice-publish/notice-publish",
     "pages/permission/permission",
-    "pages/managing-people/managing-people",
-    "[ages/registration/egistration"
+    "pages/managing-people/managing-people"
   ],
   "window": {
     "backgroundTextStyle": "light",
