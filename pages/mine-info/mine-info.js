@@ -5,21 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputIs: true
+    inputIs: true,
+    userInfo: null
   },
   modify: function () {
     this.setData({
       inputIs: !this.data.inputIs
     })
   },
-  deposit:function(){
-    if(this.data.inputIs){
+  deposit: function () {
+    if (this.data.inputIs) {
       wx.navigateBack({
         delta: 1,
       })
-    }else{
+    } else {
       this.setData({
-        inputIs:true
+        inputIs: true
       })
     }
 
@@ -28,7 +29,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    wx.getStorage({
+      key: 'userInfo',
+      success(res) {
+        console.log("data", res.data)
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
   },
 
   /**

@@ -56,34 +56,31 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-
-    api.drugActionList().then(res => {
-      var data = res.data
-      console.log("data", data);
-      this.setData({
-        durgs: data.data
+    wx.showLoading({
+      title: '加载中',
+    })
+    api.employeeActionGet({
+      number: options.mobile
+    }).then(res => {
+      wx.setStorage({
+        key: 'userInfo',
+        data: res.data.data,
+        success() {
+          console.log("userInfo", res.data.data);
+          api.drugActionList().then(res => {
+            var data = res.data
+            that.setData({
+              durgs: data.data
+            })
+            wx.hideLoading()
+          }).catch(err => {
+            wx.hideLoading()
+          })
+        }
       })
     }).catch(err => {
-
+      wx.hideLoading()
     })
-    // wx.getStorage({
-    //   key: 'userInfo',
-    //   success (res) {
-    //     if(res.data){
-    //       that.setData({
-    //         durgs: that.data.durgs_list
-    //       })
-    //     }
-    //   }
-    // })
-    // if (app.globalData.userInfo == null) {
-    //   wx.navigateTo({
-    //     url: '/pages/logs/logs',
-    //   })
-    //   this.setData({
-    //     durgs: this.data.durgs_list
-    //   })
-    // }
   },
 
   /**

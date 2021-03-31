@@ -13,6 +13,14 @@ function drugActionList(data){
   const path=apipath+"DrugAction/list"
   return requestutil(path,{})
 }
+function employeeActionGet(data){
+  const path=apipath+"EmployeeAction/get"
+  return requestutil(path,data)
+}
+function employeeActionList(){
+  const path=apipath+"EmployeeAction/list"
+  return requestutil(path,{})
+}
 
 function requestutil(url, pream) {
   return new Promise((resolve, reject) => {
@@ -32,5 +40,7 @@ function requestutil(url, pream) {
 module.exports = {
   userActionLogin,
   userActionregister,
-  drugActionList
+  drugActionList,
+  employeeActionGet,
+  employeeActionList
 }

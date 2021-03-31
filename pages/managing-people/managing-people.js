@@ -1,18 +1,25 @@
 // pages/managing-people/managing-people.js
+const api = require('../../utils/requestutil.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    employeeList:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    api.employeeActionList().then(res => {
+      this.setData({
+        employeeList:res.data.data
+      })
+    }).catch(err => {
 
+    })
   },
 
   /**

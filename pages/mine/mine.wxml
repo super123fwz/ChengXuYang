@@ -2,7 +2,7 @@
 <view class="main-view">
   <view class="mine-infor-view">
     <image class="mine-head" src="{{userInfo.avatarUrl}}"></image>
-    <text class="mine-name">{{userInfo.nickName}}</text>
+    <text class="mine-name">{{userInfo.nickname}}</text>
   </view>
   <view class="mine-item-view">
     <view class="mine-item" bindtap="mineInfo">个人信息
@@ -14,7 +14,7 @@
     <!-- <view class="mine-item" bindtap="permission">权限申请
       <image class="mine-icon" src="/reources/icon/sanjiao.png"></image>
     </view> -->
-    <view class="mine-item" bindtap="managingPeople">人员管理
+    <view class="mine-item" bindtap="managingPeople" wx:if="{{userInfo.permission==1}}">人员管理
       <image class="mine-icon" src="/reources/icon/sanjiao.png"></image>
     </view>
     <view class="push" bindtap="push">退出登录</view>

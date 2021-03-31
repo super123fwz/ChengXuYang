@@ -14,43 +14,56 @@ Page({
       url: '/pages/mine-info/mine-info',
     })
   },
-  permission:function(){
+  permission: function () {
     wx.navigateTo({
       url: '/pages/permission/permission',
     })
   },
-  managingPeople:function(){
+  managingPeople: function () {
     wx.navigateTo({
       url: '/pages/managing-people/managing-people',
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that=this
-    wx.getStorage({
-      key: 'userInfo',
-      success (res) {
-        if(res.data){
-          that.setData({
-            userInfo: res.data
-          })
-        }
-      }
-    })
-  },
-  push:function(){
+  push: function () {
     wx.setStorage({
       key: "userInfo",
       data: null,
-      success:(e)=>{
+      success: (e) => {
         wx.redirectTo({
           url: '/pages/logs/logs',
         })
       }
     })
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.getStorage({
+      key: 'userInfo',
+      success(res) {
+
+        if (res.data) {
+          wx.getUserInfo({
+            success(e) {
+              res.data.nickname = e.userInfo.nickName
+              res.data.avatarUrl = e.userInfo.avatarUrl
+              that.setData({
+                userInfo: res.data
+              })
+              wx.hideLoading()
+            }
+          })
+
+        }
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

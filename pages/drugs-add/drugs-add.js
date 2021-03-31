@@ -5,46 +5,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-    drugs_info:{
-      id:1,
-      name:"阿莫西林",
-      code:1241245125,
-      producer:"西南制药",
-      buy_price:30,
-      sell_price:32,
-      retail_price:100
+    drugs_info: {
+      id: 1,
+      name: "阿莫西林",
+      code: 1241245125,
+      producer: "西南制药",
+      buy_price: 30,
+      sell_price: 32,
+      retail_price: 100
     },
   },
   bindinput: function (e) {
-    var value=e.detail.value
-    var drugs_info=this.data.drugs_info
+    var value = e.detail.value
+    var drugs_info = this.data.drugs_info
     switch (e.dataset.type) {
       case "name":
-        drugs_info.name=value
+        drugs_info.name = value
         break;
       case "code":
-        drugs_info.code=value
+        drugs_info.code = value
         break;
       case "producer":
-        drugs_info.producer=value
+        drugs_info.producer = value
         break;
       case "buy_price":
-        drugs_info.buy_price=value
+        drugs_info.buy_price = value
         break;
       case "sell_price":
-        drugs_info.sell_price=value
+        drugs_info.sell_price = value
         break;
       default:
         break;
     }
     this.setData({
-      drugs_info:drugs_info
+      drugs_info: drugs_info
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("options", options);
     if (options.drugs_info) {
       this.setData({
         drugs_info: JSON.parse(options.drugs_info)
@@ -56,7 +57,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**

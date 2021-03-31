@@ -9,11 +9,6 @@ Page({
       password: null
     }
   },
-  // bindinput:function(e){
-  //   this.setData({
-  //     logs_phone:e.detail.value
-  //   })
-  // },
   user: function (e) {
     var login = this.data.login
     login.mobile = e.detail.value
@@ -32,7 +27,6 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    var that = this
     var loginInfo = this.data.login
     if (!loginInfo.mobile || !loginInfo.password) {
       wx.showToast({
@@ -45,28 +39,9 @@ Page({
     api.userActionLogin(loginInfo).then(res => {
       wx.hideLoading()
       var requestdata = res.data
-      console.log("requestdata", requestdata);
       if (requestdata.message == "成功") {
-        wx.setStorage({
-          key: "userInfo",
-          data: data,
-        })
-
-        wx.getUserInfo({
-          success(e) {
-            var info = that.extend({}, e.userInfo, loginInfo)
-            console.log("info", info)
-            wx.setStorage({
-              key: "userInfo",
-              data: info
-            })
-          },
-          fail(err) {
-            console.log("err", err);
-          }
-        })
         wx.switchTab({
-          url: '/pages/home/home',
+          url: '/pages/home/home?mobile='+loginInfo.mobile,
         })
       } else if (requestdata.message == "用户名或密码错误") {
         wx.showToast({
@@ -83,26 +58,6 @@ Page({
     }).catch(err => {
       wx.hideLoading()
     })
-    // wx.getUserInfo({
-    //   success: (res) => {
-    //     wx.setStorage({
-    //       key: "userInfo",
-    //       data: res.userInfo,
-    //     })
-    //     wx.hideLoading()
-    //     wx.switchTab({
-    //       url: '/pages/home/home',
-    //     })
-    //   },
-    //   fail: (e) => {
-    //     wx.hideLoading()
-    //     wx.showToast({
-    //       title: '登录失败',
-    //       icon: 'error',
-    //       duration: 2000
-    //     })
-    //   }
-    // })
   },
   onLoad() {
     wx.showLoading({
@@ -120,6 +75,7 @@ Page({
         }
       },
       fail: (e) => {
+        wx.hideLoading()
         wx.showToast({
           title: '登录失败',
           icon: 'error',
@@ -128,16 +84,5 @@ Page({
       }
     })
   },
-  extend(des, src, override) {
-    if (src instanceof Array) {
-      for (var i = 0, len = src.length; i < len; i++)
-        extend(des, src[i], override);
-    }
-    for (var i in src) {
-      if (override || !(i in des)) {
-        des[i] = src[i];
-      }
-    }
-    return des;
-  }
+
 })

@@ -1,17 +1,10 @@
 <!--pages/managing-people/managing-people.wxml-->
 <view class="main-view">
   <view class="info-view">
-      <view class="info-index">
-        <text class="info-title">冯先生</text>
-        <text class="info-con" >删除</text>
-      </view>
-      <view class="info-index">
-        <text class="info-title">冯先生</text>
-        <text class="info-con" >删除</text>
-      </view>
-      <view class="info-index">
-        <text class="info-title">冯先生</text>
-        <text class="info-con">删除</text>
-      </view>
+    <view class="info-index" wx:for="{{employeeList}}">
+      <text class="info-title">{{item.name}}</text>
+      <text class="info-title">{{item.number}}</text>
+      <text class="info-con">删除</text>
+    </view>
   </view>
 </view>
