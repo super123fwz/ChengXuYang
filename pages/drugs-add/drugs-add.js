@@ -1,24 +1,24 @@
 // pages/drugs-add/drugs-add.js
+const api = require('../../utils/requestutil.js')
+var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     drugs_info: {
-      id: 1,
-      name: "阿莫西林",
-      code: 1241245125,
-      producer: "西南制药",
-      buy_price: 30,
-      sell_price: 32,
-      retail_price: 100
+      name: null,
+      code: null,
+      producer: null,
+      buyPrice: null,
+      sellPrice: null
     },
+    isAdd: true
   },
   bindinput: function (e) {
     var value = e.detail.value
     var drugs_info = this.data.drugs_info
-    switch (e.dataset.type) {
+    switch (e.currentTarget.dataset.type) {
       case "name":
         drugs_info.name = value
         break;
@@ -28,11 +28,11 @@ Page({
       case "producer":
         drugs_info.producer = value
         break;
-      case "buy_price":
-        drugs_info.buy_price = value
+      case "buyPrice":
+        drugs_info.buyPrice = parseInt(value)
         break;
-      case "sell_price":
-        drugs_info.sell_price = value
+      case "sellPrice":
+        drugs_info.sellPrice = parseInt(value)
         break;
       default:
         break;
@@ -41,6 +41,70 @@ Page({
       drugs_info: drugs_info
     })
   },
+  modify: function () {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确认修改',
+      success(res) {
+        if (res.confirm) {
+          that.modifydrugs()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  add: function () {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确认添加',
+      success(res) {
+        if (res.confirm) {
+          that.add()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  adddrugs: function () {
+    var data = this.data.drugs_info
+    data.retailPrice = 0
+    if (data.name != null && data.code != null && data.buyPrice != null && data.producer && data.sellPrice != null) {
+      api.drugActionAdd(data).then(res => {
+
+        if (res.data.message == "成功") {
+          app.globalData.isUpdataDrugs = true
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '相关信息不能为空',
+        icon: 'error'
+      })
+    }
+  },
+  modifydrugs: function () {
+    var data = this.data.drugs_info
+    console.log("data", data)
+    api.drugActionSet(data).then(res => {
+      console.log("res", res)
+      if (res.data.message == "成功") {
+        app.globalData.isUpdataDrugs = true
+        this.setData({
+          drugs_info: data
+        })
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
+    }).catch(err => {})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -48,7 +112,8 @@ Page({
     console.log("options", options);
     if (options.drugs_info) {
       this.setData({
-        drugs_info: JSON.parse(options.drugs_info)
+        drugs_info: JSON.parse(options.drugs_info),
+        isAdd: false
       })
     }
   },

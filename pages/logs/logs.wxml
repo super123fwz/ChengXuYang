@@ -2,5 +2,9 @@
 <view class="container log-list">
   <input class="input-phone" placeholder="请输入工号" maxlength="11" bindinput="user" maxlength="4"></input>
   <input class="input-phone" placeholder="请输入密码" maxlength="11" bindinput="password" password maxlength="10"></input>
-  <button class="" bindtap="bindinfo" open-type="getUserInfo">登陆/注册</button>
+
+  <view class="bottom-box">
+    <view class="bt-modify" style="margin-left:0" bindtap="bindinfo">登陆</view>
+    <view class="bt-modify" bindtap="registerbindinfo">注册</view>
+  </view>
 </view>

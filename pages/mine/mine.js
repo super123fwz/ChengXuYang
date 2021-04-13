@@ -21,7 +21,7 @@ Page({
   },
   managingPeople: function () {
     wx.navigateTo({
-      url: '/pages/managing-people/managing-people',
+      url: '/pages/managing-people/managing-people?userInfoId=' + this.data.userInfo.number,
     })
   },
   push: function () {
@@ -29,6 +29,7 @@ Page({
       key: "userInfo",
       data: null,
       success: (e) => {
+        app.globalData.ispush = true
         wx.redirectTo({
           url: '/pages/logs/logs',
         })
@@ -43,22 +44,15 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+
     wx.getStorage({
       key: 'userInfo',
       success(res) {
-
         if (res.data) {
-          wx.getUserInfo({
-            success(e) {
-              res.data.nickname = e.userInfo.nickName
-              res.data.avatarUrl = e.userInfo.avatarUrl
-              that.setData({
-                userInfo: res.data
-              })
-              wx.hideLoading()
-            }
+          that.setData({
+            userInfo: res.data
           })
-
+          wx.hideLoading()
         }
       }
     })

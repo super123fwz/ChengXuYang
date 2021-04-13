@@ -17,15 +17,15 @@
     </view>
     <view class="info-index">
       <text class="info-title">【进货价格】</text>
-      <text class="info-con">{{drugs_info.buy_price}}</text>
+      <text class="info-con">{{drugs_info.buyPrice}}</text>
     </view>
     <view class="info-index">
       <text class="info-title">【出售价格】</text>
-      <text class="info-con">{{drugdrugs_infos.sell_price}}</text>
+      <text class="info-con">{{drugs_info.sellPrice}}</text>
     </view>
     <view class="info-index">
       <text class="info-title">【剩余量】</text>
-      <text class="info-con">{{drugs_info.retail_price}}</text>
+      <text class="info-con">{{drugs_info.retailPrice}}</text>
     </view>
     <view class="info-index input-view">
       <text class="info-title">【支出/添加】</text>
@@ -38,7 +38,7 @@
   </view>
   <view class="bottom-box">
     <view class="bt-modify" style="margin-left:0" bindtap="modify">修改</view>
-    <view class="bt-modify" bindtap="expend">支出</view>
-    <view class="bt-modify deposit" bindtap="deposit">添加</view>
+    <view class="bt-modify" bindtap="modifyNum" data-type="expend">支出</view>
+    <view class="bt-modify deposit" bindtap="modifyNum" data-type="deposit">添加</view>
   </view>
 </view>

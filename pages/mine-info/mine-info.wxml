@@ -4,32 +4,32 @@
     <view class="info-index">
       <text class="info-title">姓名</text>
       <text class="info-con" wx:if="{{inputIs}}">{{userInfo.name}}</text>
-      <input class="input-name" placeholder="请输入" wx:else></input>
+      <input class="input-name" placeholder="请输入" wx:else value="{{userInfo.name}}" data-type="name" bindinput="bindinput"></input>
     </view>
     <view class="info-index">
       <text class="info-title">年龄</text>
       <text class="info-con" wx:if="{{inputIs}}">{{userInfo.age}}</text>
-      <input class="input-age" placeholder="请输入" wx:else></input>
+      <input class="input-age" placeholder="请输入" wx:else value="{{userInfo.age}}" data-type="age" bindinput="bindinput"></input>
     </view>
     <view class="info-index">
       <text class="info-title">性别</text>
       <text class="info-con" wx:if="{{inputIs}}">{{userInfo.sex}}</text>
-      <input class="input-sex" placeholder="请输入" wx:else></input>
+      <input class="input-sex" placeholder="请输入" wx:else value="{{userInfo.sex}}" data-type="sex" bindinput="bindinput"></input>
     </view>
     <view class="info-index">
       <text class="info-title">工号</text>
       <text class="info-con" wx:if="{{inputIs}}">{{userInfo.personid}}</text>
-      <input class="input-jobNum" placeholder="请输入" wx:else></input>
+      <input class="input-jobNum" placeholder="请输入" wx:else value="{{userInfo.personid}}" data-type="personid" bindinput="bindinput"></input>
     </view>
     <view class="info-index">
       <text class="info-title">职务</text>
       <text class="info-con" wx:if="{{inputIs}}">{{userInfo.position}}</text>
-      <input class="input-job" placeholder="请输入" wx:else></input>
+      <input class="input-job" placeholder="请输入" wx:else value="{{userInfo.position}}" data-type="position" bindinput="bindinput"></input>
     </view>
     <view class="info-index">
       <text class="info-title">电话</text>
       <text class="info-con" wx:if="{{inputIs}}">{{userInfo.telphone}}</text>
-      <input class="input-phone" placeholder="请输入" wx:else></input>
+      <input class="input-phone" placeholder="请输入" wx:else value="{{userInfo.telphone}}" data-type="telphone" bindinput="bindinput"></input>
     </view>
     <view class="info-index" wx:if="{{inputIs}}">
       <text class="info-title">权限</text>

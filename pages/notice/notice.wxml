@@ -1,10 +1,11 @@
 <!--pages/notice/notice.wxml-->
+<wxs src="/utils/timeUtil.wxs" module="timeUtil"></wxs>
 <view class="main-view">
   <view class="notice-list">
     <block wx:for="{{message}}">
       <view style="display:flex;flex-direction: column;margin-top:20rpx">
-        <view class="time">{{time}}</view>
-        <view class="notice-con">{{item.data}}</view>
+        <view class="time">{{timeUtil.formatDate(item.time*1000)}}</view>
+        <view class="notice-con">{{item.context}}</view>
       </view>
     </block>
   </view>

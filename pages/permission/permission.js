@@ -8,22 +8,45 @@ Page({
   data: {
     user: {
       mobile: null,
-      password: null,
-      affirmpassword: null,
-    }
+    },
+    password: null,
+    affirmpassword: null,
   },
   bindinput: function (e) {
     var value = e.detail.value
     var user = this.data.user
+    var affirmpassword = this.data.affirmpassword
+    var password = this.data.password
     switch (e.target.dataset.type) {
       case "user":
-        user.mobile = value
+        user.number = value
         break;
       case "affirmpassword":
-        user.affirmpassword = value
+        affirmpassword = value
+        this.setData({
+          affirmpassword: affirmpassword
+        })
         break;
       case "password":
-        user.password = value
+        password = value
+        this.setData({
+          password: password
+        })
+        break;
+      case "name":
+        user.name = value
+        break;
+      case "age":
+        user.age = value
+        break;
+      case "sex":
+        user.sex = value
+        break;
+      case "position":
+        user.position = value
+        break;
+      case "telphone":
+        user.telphone = value
         break;
       default:
         break;
@@ -34,7 +57,7 @@ Page({
   },
   bindsign: function () {
     var data = this.data.user
-    if (data.password != data.affirmpassword) {
+    if (this.data.password != this.data.affirmpassword) {
       wx.showToast({
         title: '两次密码不一致',
         icon: 'error',
@@ -42,13 +65,43 @@ Page({
       })
       return
     }
-    data = {
-      mobile: data.mobile,
-      password: data.password,
+    var registe = {
+      mobile: data.number,
+      password: this.data.password,
     }
+    data.personid = null
+    data.hiredate = null
+    data.permission = 0
     console.log("data", data)
-    api.userActionregister(data).then(res => {
-      console.log(res)
+    // return
+    api.userActionregister(registe).then(res => {
+      var message = res.data.data
+      console.log("message", message)
+      if (message == "注册成功") {
+        api.employeeAdd(data).then(res => {
+          wx.showToast({
+            title: '注册成功',
+            icon: 'error',
+            duration: 2000
+          })
+          wx.navigateBack({
+            delta: 1,
+          })
+        }).catch(err => {})
+
+      } else if (message == "用户名或密码错误") {
+        wx.showToast({
+          title: '账号已存在',
+          icon: 'error',
+          duration: 2000
+        })
+      } else if (message == "出错了") {
+        wx.showToast({
+          title: '注册失败',
+          icon: 'error',
+          duration: 2000
+        })
+      }
     }).catch(err => {
 
     })

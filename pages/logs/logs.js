@@ -6,7 +6,7 @@ Page({
   data: {
     login: {
       mobile: null,
-      password: null
+      password: null,
     }
   },
   user: function (e) {
@@ -24,9 +24,6 @@ Page({
     })
   },
   bindinfo(e) {
-    wx.showLoading({
-      title: '加载中',
-    })
     var loginInfo = this.data.login
     if (!loginInfo.mobile || !loginInfo.password) {
       wx.showToast({
@@ -36,12 +33,16 @@ Page({
       })
       return
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     api.userActionLogin(loginInfo).then(res => {
       wx.hideLoading()
       var requestdata = res.data
       if (requestdata.message == "成功") {
+        app.globalData.mobile = loginInfo.mobile
         wx.switchTab({
-          url: '/pages/home/home?mobile='+loginInfo.mobile,
+          url: '/pages/home/home',
         })
       } else if (requestdata.message == "用户名或密码错误") {
         wx.showToast({
@@ -50,13 +51,19 @@ Page({
           duration: 2000
         })
       } else if (requestdata.message == "出错了") {
-        wx.navigateTo({
-          url: '/pages/permission/permission',
+        wx.showToast({
+          title: '用户未注册',
+          icon: 'error',
+          duration: 2000
         })
       }
-
     }).catch(err => {
       wx.hideLoading()
+    })
+  },
+  registerbindinfo: function () {
+    wx.navigateTo({
+      url: '/pages/permission/permission',
     })
   },
   onLoad() {
@@ -71,16 +78,17 @@ Page({
             url: '/pages/home/home',
           })
         } else {
+          wx.showToast({
+            title: '登录失败',
+            icon: 'error',
+            duration: 2000
+          })
           wx.hideLoading()
         }
       },
       fail: (e) => {
         wx.hideLoading()
-        wx.showToast({
-          title: '登录失败',
-          icon: 'error',
-          duration: 2000
-        })
+
       }
     })
   },

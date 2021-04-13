@@ -11,14 +11,14 @@
 
 .info-index {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 20rpx 30rpx;
   font-size: 40rpx;
 }
 
 .info-index input {
-  width: 200rpx;
+  width: 100%;
 }
 
 

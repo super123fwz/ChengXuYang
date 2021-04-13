@@ -3,10 +3,34 @@
   flex-direction: column;
   padding: 40rpx;
 }
+
 .log-item {
   margin: 10rpx;
 }
-.input-phone{
-  border:2rpx solid rgb(179, 176, 176);
+
+.input-phone {
+  border: 2rpx solid rgb(179, 176, 176);
   padding-left: 15rpx;
+}
+
+.bottom-box {
+  margin: 80rpx 30rpx 0 30rpx;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 40rpx;
+  color: aliceblue;
+}
+
+.bt-modify {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(13, 196, 7);
+  border: 2rpx solid rgb(221, 218, 218);
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 30rpx;
 }

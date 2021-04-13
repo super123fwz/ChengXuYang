@@ -18,12 +18,21 @@ Page({
     }, {
       id: 3,
       name: "阿莫西林"
-    }]
+    }],
+    mobile: null
   },
-  drugsInfo: function () {
-    wx.navigateTo({
-      url: '../drugs-info/drugs-info',
-    })
+  drugsInfo: function (e) {
+    console.log("e", e)
+    var id = e.target.id
+    var list = this.data.durgs_list
+    list.forEach(res => {
+      if (res.id == id) {
+        wx.navigateTo({
+          url: '../drugs-info/drugs-info?info=' + JSON.stringify(res),
+        })
+      }
+    });
+
   },
   drugsAdd: function () {
     wx.navigateTo({
@@ -46,41 +55,86 @@ Page({
         durgs: this.data.durgs_list
       })
     } else {
-      this.setData({
-        durgs: null
-      })
+      for (var i in (this.data.durgs_list)) {
+        var res = this.data.durgs_list[i]
+        if (res.code == info || res.name == info) {
+          this.setData({
+            durgs: [res]
+          })
+          return
+        } else {
+          this.setData({
+            durgs: []
+          })
+        }
+      }
     }
+  },
+
+  load: function () {
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    api.drugActionList().then(res => {
+      var data = res.data
+      console.log("data", data);
+      app.globalData.isUpdataDrugs = false
+      that.setData({
+        durgs: data.data,
+        durgs_list: data.data
+      })
+      wx.hideLoading()
+    }).catch(err => {
+      wx.hideLoading()
+    })
+
+  },
+  getinfo(data) {
+    var that = this
+    api.employeeActionGet(data).then(res => {
+      console.log("res", res)
+      wx.setStorage({
+        key: 'userInfo',
+        data: res.data.data,
+        success() {
+          app.globalData.ispush = false
+          that.load()
+        }
+      })
+    }).catch(err => {})
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this
-    wx.showLoading({
-      title: '加载中',
-    })
-    api.employeeActionGet({
-      number: options.mobile
-    }).then(res => {
-      wx.setStorage({
+    var data = {
+      number: app.globalData.mobile
+    }
+    if (data.number == null) {
+      wx.getStorage({
         key: 'userInfo',
-        data: res.data.data,
-        success() {
-          console.log("userInfo", res.data.data);
-          api.drugActionList().then(res => {
-            var data = res.data
-            that.setData({
-              durgs: data.data
+        success(res) {
+          if (res.data) {
+            that.load()
+          } else {
+            wx.showToast({
+              title: '获取信息失败',
+              image: "none"
             })
-            wx.hideLoading()
-          }).catch(err => {
-            wx.hideLoading()
+          }
+        },
+        fail() {
+          wx.showToast({
+            title: '获取信息失败',
+            image: "none"
           })
-        }
+        },
       })
-    }).catch(err => {
-      wx.hideLoading()
-    })
+      return
+    }
+    this.getinfo(data)
   },
 
   /**
@@ -94,11 +148,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // if (app.globalData.userInfo == null) {
-    //   wx.navigateTo({
-    //     url: '/pages/logs/logs',
-    //   })
-    // }
+    if (app.globalData.isUpdataDrugs) {
+      this.load()
+    }
+    if (app.globalData.ispush) {
+      var data = {
+        number: app.globalData.mobile
+      }
+      this.getinfo(data)
+    }
   },
 
   /**

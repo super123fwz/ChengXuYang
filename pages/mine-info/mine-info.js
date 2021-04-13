@@ -1,4 +1,5 @@
 // pages/mine-info/mine-info.js
+const api = require('../../utils/requestutil.js')
 Page({
 
   /**
@@ -9,9 +10,37 @@ Page({
     userInfo: null
   },
   modify: function () {
-    this.setData({
-      inputIs: !this.data.inputIs
-    })
+    var data = this.data.userInfo
+    if (!this.data.inputIs) {
+      wx.showModal({
+        title: '提示',
+        content: '是否确认修改',
+        success(res) {
+          if (res.confirm) {
+            api.employeeUpdate(data).then(res => {
+              console.log("res", res)
+              if (res.data.message == "成功") {
+                wx.setStorage({
+                  key: 'userInfo',
+                  data: data,
+                })
+                this.setData({
+                  inputIs: !this.data.inputIs
+                })
+              }
+            }).catch(err => {})
+          } else if (res.cancel) {
+            return
+          }
+        }
+      })
+
+    } else {
+      this.setData({
+        inputIs: !this.data.inputIs
+      })
+    }
+
   },
   deposit: function () {
     if (this.data.inputIs) {
@@ -24,6 +53,35 @@ Page({
       })
     }
 
+  },
+  bindinput: function (e) {
+    var value = e.detail.value
+    var userInfo = this.data.userInfo
+    switch (e.currentTarget.dataset.type) {
+      case "name":
+        userInfo.name = value
+        break;
+      case "age":
+        userInfo.age = value
+        break;
+      case "sex":
+        userInfo.sex = value
+        break;
+      case "personid":
+        userInfo.personid = value
+        break;
+      case "position":
+        drugs_info.position = value
+        break;
+      case "telphone":
+        userInfo.telphone = value
+        break;
+      default:
+        break;
+    }
+    this.setData({
+      userInfo: userInfo
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -40,6 +98,7 @@ Page({
       }
     })
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

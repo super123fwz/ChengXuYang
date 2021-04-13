@@ -7,7 +7,7 @@
     </image>
   </view>
   <view class="list-con">
-    <view class="list-view" wx:for="{{durgs}}" id="{{index}}" bindtap="drugsInfo">
+    <view class="list-view" wx:for="{{durgs}}" id="{{item.id}}" bindtap="drugsInfo" wx:key="index">
       <text class="drugs">{{item.name}}</text>
     </view>
     <image class="add_drugs" src="/reources/icon/add_drugs.png" bindtap="drugsAdd"></image>

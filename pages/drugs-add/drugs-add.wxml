@@ -4,24 +4,30 @@
 
     <view class="info-index">
       <text class="info-title">【药品名称】</text>
-      <input class="drugs-input" placeholder="请输入药品名称" value="{{drugs_info.name}}" bindinput="bindinput" data-type="name"></input>
+      <input class="drugs-input" placeholder="请输入药品名称" value="{{drugs_info.name}}" bindinput="bindinput"
+        data-type="name"></input>
     </view>
     <view class="info-index">
       <text class="info-title">【药品编号】</text>
-      <input class="drugs-input" placeholder="请输入药品编号" value="{{drugs_info.code}}" bindinput="bindinput" data-type="code"></input>
+      <input class="drugs-input" placeholder="请输入药品编号" value="{{drugs_info.code}}" bindinput="bindinput"
+        data-type="code"></input>
     </view>
     <view class="info-index">
       <text class="info-title">【生产厂家】</text>
-      <input class="drugs-input" placeholder="请输入厂家"  value="{{drugs_info.producer}}" bindinput="bindinput" data-type="producer"></input>
+      <input class="drugs-input" placeholder="请输入厂家" value="{{drugs_info.producer}}" bindinput="bindinput"
+        data-type="producer"></input>
     </view>
     <view class="info-index">
       <text class="info-title">【进货价格】</text>
-      <input class="drugs-input" placeholder="请输入药品买入价格" value="{{drugs_info.buy_price}}" bindinput="bindinput" data-type="buy_price"></input>
+      <input class="drugs-input" placeholder="请输入药品买入价格" value="{{drugs_info.buyPrice}}" bindinput="bindinput"
+        data-type="buyPrice"></input>
     </view>
     <view class="info-index">
       <text class="info-title">【出售价格】</text>
-      <input class="drugs-input" placeholder="请输入药品卖出价格" value="{{drugs_info.sell_price}}" bindinput="bindinput" data-type="sell_price"></input>
+      <input class="drugs-input" placeholder="请输入药品卖出价格" value="{{drugs_info.sellPrice}}" bindinput="bindinput"
+        data-type="sellPrice"></input>
     </view>
   </view>
-  <view class="bt-add">{{drugs_info?'修改':'添加'}}</view>
+  <view class="bt-add" bindtap="modify" wx:if="{{!isAdd}}">修改</view>
+  <view class="bt-add" bindtap="add" wx:else>添加</view>
 </view>

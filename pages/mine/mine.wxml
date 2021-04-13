@@ -1,8 +1,14 @@
 <!--pages/mine/mine.wxml-->
 <view class="main-view">
   <view class="mine-infor-view">
-    <image class="mine-head" src="{{userInfo.avatarUrl}}"></image>
-    <text class="mine-name">{{userInfo.nickname}}</text>
+    <!-- <image class="mine-head" src="{{userInfo.avatarUrl}}"></image>
+    <text class="mine-name">{{userInfo.nickname}}</text> -->
+    <view class="mine-head">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="mine-name">
+      <open-data type="userNickName"></open-data>
+    </view>
   </view>
   <view class="mine-item-view">
     <view class="mine-item" bindtap="mineInfo">个人信息

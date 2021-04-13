@@ -1,10 +1,12 @@
 <!--pages/managing-people/managing-people.wxml-->
 <view class="main-view">
   <view class="info-view">
-    <view class="info-index" wx:for="{{employeeList}}">
-      <text class="info-title">{{item.name}}</text>
-      <text class="info-title">{{item.number}}</text>
-      <text class="info-con">删除</text>
-    </view>
+    <block wx:for="{{employeeList}}">
+      <view class="info-index" wx:if="{{userInfoId!=item.number}}">
+        <text class="info-title">{{item.name}}</text>
+        <text class="info-title">{{item.number}}</text>
+        <view class="info-con" data-id="{{index}}" bindtap="dele" >删除</view>
+      </view>
+    </block>
   </view>
 </view>

@@ -5,13 +5,40 @@
       <text class="info-title">工号</text>
       <input class="input-name" placeholder="请输入工号" bindinput="bindinput" data-type="user" maxlength="4"></input>
     </view>
+
+    <view class="info-index">
+      <text class="info-title">姓名</text>
+      <input class="input-name" placeholder="请输入" value="{{userInfo.name}}" data-type="name"
+        bindinput="bindinput"></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">年龄</text>
+      <input class="input-age" placeholder="请输入年龄" value="{{userInfo.age}}" data-type="age" bindinput="bindinput"
+        type="number" maxlength="2"></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">性别</text>
+      <input class="input-sex" placeholder="请输入性别" value="{{userInfo.sex}}" data-type="sex" bindinput="bindinput"
+        maxlength="1"></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">职务</text>
+      <input class="input-job" placeholder="请输入职务" value="{{userInfo.position}}" data-type="position"
+        bindinput="bindinput"></input>
+    </view>
+    <view class="info-index">
+      <text class="info-title">电话</text>
+      <input class="input-phone" placeholder="请输入电话" value="{{userInfo.telphone}}" data-type="telphone" type="number" maxlength="11" bindinput="bindinput"></input>
+    </view>
     <view class="info-index">
       <text class="info-title">密码</text>
-      <input class="input-age" placeholder="请输入最多十位密码" bindinput="bindinput" data-type="password" password maxlength="10"></input>
+      <input class="input-age" placeholder="请输入最多十位密码" bindinput="bindinput" data-type="password" password
+        maxlength="10"></input>
     </view>
     <view class="info-index">
       <text class="info-title">再次确认密码</text>
-      <input class="input-age" placeholder="请再次确认" bindinput="bindinput" data-type="affirmpassword" password maxlength="10"></input>
+      <input class="input-age" placeholder="请输入最多十位密码" bindinput="bindinput" data-type="affirmpassword" password
+        maxlength="10"></input>
     </view>
     <button class="sign" bindtap="bindsign" open-type="getUserInfo">注册</button>
   </view>
