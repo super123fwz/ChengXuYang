@@ -10,6 +10,7 @@ Page({
     userInfo: null
   },
   modify: function () {
+    var that = this
     var data = this.data.userInfo
     if (!this.data.inputIs) {
       wx.showModal({
@@ -24,8 +25,12 @@ Page({
                   key: 'userInfo',
                   data: data,
                 })
-                this.setData({
-                  inputIs: !this.data.inputIs
+                wx.showToast({
+                  title: '修改成功',
+
+                })
+                that.setData({
+                  inputIs: !that.data.inputIs
                 })
               }
             }).catch(err => {})

@@ -1,5 +1,6 @@
 <!--pages/notice/notice.wxml-->
 <wxs src="/utils/timeUtil.wxs" module="timeUtil"></wxs>
+
 <view class="main-view">
   <view class="notice-list">
     <block wx:for="{{message}}">

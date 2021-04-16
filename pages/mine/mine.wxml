@@ -1,8 +1,6 @@
 <!--pages/mine/mine.wxml-->
 <view class="main-view">
   <view class="mine-infor-view">
-    <!-- <image class="mine-head" src="{{userInfo.avatarUrl}}"></image>
-    <text class="mine-name">{{userInfo.nickname}}</text> -->
     <view class="mine-head">
       <open-data type="userAvatarUrl"></open-data>
     </view>

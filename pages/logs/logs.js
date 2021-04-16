@@ -2,6 +2,7 @@
 const util = require('../../utils/util.js')
 const api = require('../../utils/requestutil.js')
 var app = getApp()
+
 Page({
   data: {
     login: {
@@ -27,8 +28,8 @@ Page({
     var loginInfo = this.data.login
     if (!loginInfo.mobile || !loginInfo.password) {
       wx.showToast({
-        title: '请输入工号或密码',
-        icon: 'error',
+        title: '请输入工号或密码为空',
+        icon: 'none',
         duration: 2000
       })
       return

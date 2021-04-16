@@ -55,7 +55,6 @@ function employeeDel(data) {
   const path = apipath + "EmployeeAction/del"
   return requestutil(path, data)
 }
-
 function employeeAdd(data) {
   const path = apipath + "EmployeeAction/add"
   return requestutil(path, data)

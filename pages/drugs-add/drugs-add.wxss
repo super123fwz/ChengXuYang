@@ -38,6 +38,7 @@
   bottom: 30rpx;
   left: 30rpx;
   right: 30rpx;
+  
   border: 2rpx solid #cccc;
   border-radius: 50rpx;
   height: 80rpx;
